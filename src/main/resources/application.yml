@@ -1,0 +1,62 @@
+spring:
+  profiles:
+    active: local
+
+---
+
+spring:
+  profiles: local
+  main:
+    allow-bean-definition-overriding: true
+  batch:
+    jdbc:
+      initialize-schema: always
+
+
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpabank;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        #       show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
+
+---
+
+spring:
+  profiles: mysql
+  batch:
+    jdbc:
+      initialize-schema: always
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_batch_bank?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8;
+    username: mingu
+    password: alsrn1020
+    driver-class-name: com.mysql.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        #       show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
+
